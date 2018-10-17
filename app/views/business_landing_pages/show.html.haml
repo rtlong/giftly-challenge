@@ -1,35 +1,38 @@
 .text-center.primary.card
   .card-body
-    %h1.card-title
-      Buy a Gift Card to #{@business.name}
-    %p
-      Send a personalized cash gift card that is suggested for use at #{@business.name}.
+    %h1.card-title Buy a Gift Card to #{@business.name}
+    %p.card-text.lead
+      Send a personalized cash gift card that is suggested for use at
+      = succeed '.' do
+        %strong.text-secondary #{@business.name}
       Any amount up to $1,000. Deliver by email, mail, or print at home.
-    %p You suggest where to go and what to get— the recipient always get what they want.
-    %p
-      %button.btn.btn-primary{type: "button"} Customize &amp; Buy »
-    %p
-      %button.btn.btn-link{type: "button"}
+    %p.card-text.lead You suggest where to go and what to get— the recipient always get what they want.
+    %p.card-text
+      %a.btn.btn-primary.btn-lg{href: "https://www.giftly.com/customizer?s=gc"} Customize &amp; Buy &raquo;
+    %p.card-text.lead
+      %a{href: "https://giftly.com"}
         = image_tag "giftly-guarantee.png", alt: 'Guaranteed emblem'
         100% Satisfaction Guaranteed
+
   .card-footer
     .row
-      .col
-        %button.btn.btn-link{type: "button"} How it works
-      .col
-        %button.btn.btn-link{type: "button"} Sample gift
-      .col
-        %button.btn.btn-link{type: "button"} Why Giftly
+      .col-sm
+        %a{href: "/how-it-works"} How it works
+      .col-sm
+        %a{href: "https://www.giftly.com/gift/landing/demo?spec=buy_gift_cards"} Sample gift
+      .col-sm
+        %a{href: "/why-giftly"} Why Giftly
+
 .text-center.card
   .card-body
-    %h2.card-title Customizable greeting cards for any occasion
-    %p
-      = image_tag "happy-birthday-greeting-card.png", alt: 'Greeting card with the text "Happy Birthday" over a backdrop of baloons in the sky'
-      = image_tag "enjoy-greeting-card.png", alt: 'Greeting card with the text "Enjoy!" over a solid white background'
-      = image_tag "congrats-greeting-card.png", alt: 'Greeting card with a large thumbs-up icon and the text "Congrats!"'
-      = image_tag "photo-greeting-card.png", alt: 'Greeting card with the text "Custom photo card" over a background selfie with several people'
-      = image_tag "love-greeting-card.png", alt: 'Greeting card with the text "Love you" over a solid red background'
-      = image_tag "happy-birthday-candles-greeting-card.png", alt: 'Greeting card with the text "Happy Birthday" and an illustration of 5 candles'
+    %h3.card-title Customizable greeting cards for any occasion
+    .row
+      .col-md-2.col-sm-4.col-6.greeting-card-image= image_tag "happy-birthday-greeting-card.png", alt: 'Greeting card with the text "Happy Birthday" over a backdrop of baloons in the sky'
+      .col-md-2.col-sm-4.col-6.greeting-card-image= image_tag "enjoy-greeting-card.png", alt: 'Greeting card with the text "Enjoy!" over a solid white background'
+      .col-md-2.col-sm-4.col-6.greeting-card-image= image_tag "congrats-greeting-card.png", alt: 'Greeting card with a large thumbs-up icon and the text "Congrats!"'
+      .col-md-2.col-sm-4.col-6.greeting-card-image= image_tag "photo-greeting-card.png", alt: 'Greeting card with the text "Custom photo card" over a background selfie with several people'
+      .col-md-2.col-sm-4.col-6.greeting-card-image= image_tag "love-greeting-card.png", alt: 'Greeting card with the text "Love you" over a solid red background'
+      .col-md-2.col-sm-4.col-6.greeting-card-image= image_tag "happy-birthday-candles-greeting-card.png", alt: 'Greeting card with the text "Happy Birthday" and an illustration of 5 candles'
 
 .card.yelp-card
   .card-body
@@ -45,23 +48,24 @@
         .business-phone= @business.phone
     %dl
       .row
-        .col.categories
+        .col-sm.categories
           %dt Categories
           - @business.categories.each do |category|
             %dd
-              %a{href: category.id}>= category.title
+              %a{href: "https://www.giftly.com/#{category.id}-gift-cards"}>= category.title
         - if @business.price
-          .col.price-range
+          .col-sm.price-range
             %dt Price Range
             %dd= yelp_price_widget @business.price
             %dd= @business.price_range
-        -# .col.neighborhood
+        -# .col-sm.neighborhood
         -#   %dt Neighborhood
         -#   %dd= @business.neighborhood
         - if @business.cross_streets.present?
-          .col.cross-streets
+          .col-sm.cross-streets
             %dt Cross Streets
             %dd= @business.cross_streets
+
     .row
       .col= google_maps_interactive(*@business.coordinates)
 
@@ -74,31 +78,31 @@
 
     - @business.reviews.each do |review|
       .row
-        .col-auto
+        .col-sm-auto
           = yelp_ratings_widget rating: review.fetch('rating')
-        .col
+        .col-sm
           = surround '"' do
             = review.fetch('text')
           = link_to 'read more', review.fetch('url')
 
   .card-footer.text-center
     Is this your business? Take a moment to
-    = link_to 'claim the page', '#'
+    = link_to 'claim the page', "https://www.giftly.com/merchants/#{@business.id}"
     and customize it for free.
 
 .card
   .card-body
     %h2.card-title= "If not #{@business.name}, they might also enjoy"
 
-    %p= "Browse places similar to #{@business.name}"
+    %p.card-text= "Browse places similar to #{@business.name}"
 
-    .row
+    .row.card-text
       - @similar_categories_nav.each do |cat|
-        .col-6= link_to cat.text, cat.target
+        .col-sm-6= link_to cat.text, cat.target
 
-    %p Or perhaps,
+    %p.card-text Or perhaps,
 
-    .row
+    .row.card-text
       .col
         .img= image_tag 'dinner-at-any-restaurant.png'
         Dinner at Any restaurant
@@ -109,7 +113,7 @@
         .img= image_tag 'movies-at-any-theater.png'
         Movies at Any theater
 
-    %p= link_to 'Browse more gift ideas'
+    %p.card-text= link_to 'Browse more gift ideas', 'https://www.giftly.com/browse'
 
 .card
   .card-body
@@ -127,7 +131,7 @@
     %p
       Your recipient redeems online and chooses how to receive the money. They can spend their funds at
       = succeed ',' do
-        %span.business-name= @business.name
+        %strong.text-secondary #{@business.name}
       or elsewhere if they prefer. There is no physical gift certificate to carry around or lose.
 
     %p Gift cards sent through Giftly never expire and there are no fees, so recipients can redeem at any time.
@@ -135,14 +139,15 @@
     %p Giftly combines the flexibility and convenience of giving money, but includes a thoughtful suggestion that makes it more personal.
 
     %p.text-center
-      %button.btn.btn-secondary{type: 'button'} See an example gift &raquo;
+      %button.btn.btn-light.btn-wide{type: 'button'}
+        See an example gift &raquo;
 
 .card
   .card-body
     %h2.card-title Help
 
     %p
-      If you have questions, need help, or want to modify, resend, or cancel a gift, please see our #{link_to "Support Center"}, where you can access an array of self-service tools and our FAQ.
+      If you have questions, need help, or want to modify, resend, or cancel a gift, please see our #{link_to "Support Center", 'https://www.giftly.com/support'}, where you can access an array of self-service tools and our FAQ.
 
     %p
       = link_to '' do

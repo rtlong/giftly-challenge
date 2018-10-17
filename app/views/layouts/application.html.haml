@@ -9,31 +9,40 @@
     %meta{content: "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}/
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    = google_maps_script_tag
+    %link(rel="stylesheet" href="https://use.typekit.net/whd6cwg.css")
+
+
 
   %body
     .header
       .colorBar
         .container
-          %nav.navbar.navbar-expand-md
-            .col-auto.navbar-brand.logo
+          %nav.navbar.navbar-expand-sm.navbar-light
+            .navbar-brand.logo
               = image_tag 'giftly-logo-header.png', alt: 'Giftly'
-            .col.navbar-text.pageTitle= page_title
-            %ul.col-auto.navbar-nav.text-right
-              %li.nav-item
-                %a.nav-link{href: "#", role: "button"} Browse
-              %li.nav-item
-                %a.nav-link{href: "#", role: "button"} Corporate Gifts
+            %button.navbar-toggler{type: 'button', data: {toggle: 'collapse', target: '#navbarCollapsible'}, aria: {controls: 'navbarCollapsible', expanded: 'false',label: 'Toggle navigation'}}
+              %span.navbar-toggler-icon
+            .collapse.navbar-collapse#navbarCollapsible
+              .navbar-text.mr-auto.pageTitle= page_title
+              %ul.navbar-nav
+                %li.nav-item
+                  %a.nav-link{href: "/browse", role: "button"} Browse
+                %li.nav-item
+                  %a.nav-link{href: "/corporate", role: "button"} Corporate Gifts
 
       - if breadcrumbs.any?
-        %nav.breadcrumbNav
-          .container
-            .row
-              %nav{"aria-label" => "breadcrumb"}
-                %ol.breadcrumb{role: "navigation"}
-                  - breadcrumbs.each do |breadcrumb|
-                    %li.breadcrumb-item
-                      = link_to breadcrumb.text, breadcrumb.target
+        .container
+          .row
+            %nav{"aria-label" => "breadcrumb"}
+              %ol.breadcrumb{role: "navigation"}
+                - breadcrumbs.each do |breadcrumb|
+                  %li.breadcrumb-item
+                    = link_to breadcrumb.text, breadcrumb.target
 
     .container
       = yield
+
+    = google_maps_script_tag
+    %script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous")
+    -# %script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous")
+    %script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous")

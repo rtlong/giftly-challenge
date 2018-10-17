@@ -1,15 +1,70 @@
 $breadcrumb-divider: quote("›");
+$breadcrumb-bg: transparent;
+
+// $enable-rounded: false;
+$enable-shadows: true;
+
+$body-bg: #E8EEF1;
+$body-color: #515C60;
+$primary: #2CC0DE;
+$secondary: #FBB42A;
+$light: #E9EAEB;
+$card-border-color: #DDDEDF;
+$card-cap-bg: white;
+
+$font-family-sans-serif: museo-sans, "Helvetica Neue", Helvetica, Helvetica, Arial, sans-serif;
+
+$font-weight-lighter:         lighter !default;
+$font-weight-light:           300 !default;
+$font-weight-normal:          500 !default;
+$font-weight-bold:            700 !default;
+$font-weight-bolder:          bolder !default;
+
+// $btn-box-shadow: 0 1px 0 rgba($white, .15),
+//                  0 1px 1px rgba($black, .075);
+$btn-box-shadow: 0 0.2rem 0.21rem rgba(0, 0, 0, 0.275);
 
 @import "bootstrap/scss/bootstrap";
+
+@include media-breakpoint-up(md) {
+  body {
+    font-weight: $font-weight-light;
+  }
+}
+
+.col,
+[class*="col-"] {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
 
 .navbar {
   padding: 0.5rem 0;
 
-  .col, .col-auto {
+  .col,
+  [class*="col-"] {
     padding: 0;
+    // margin-bottom: 0;
   }
+}
+
+.card {
+  margin-bottom: 2rem;
 }
 
 .card-body {
   padding: 1.25rem 2rem;
+}
+
+.card-footer {
+  .col,
+  [class*="col-"] {
+    // padding: 0;
+    // margin-bottom: 0;
+    // margin-top: 0;
+  }
+}
+
+.btn-primary {
+  color: $white;
 }

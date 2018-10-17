@@ -38,7 +38,6 @@ class YelpBusinessPresenter < SimpleDelegator
   def address
     # location.fetch('display_address', []).join(', ') # this includes the ZIP code which the mock doesn't have
     street = location['address1']
-    state = location['state']
     [street, city, state].compact.join(', ')
   end
 
@@ -48,6 +47,10 @@ class YelpBusinessPresenter < SimpleDelegator
 
   def city
     location.fetch('city')
+  end
+
+  def state
+    location.fetch('state')
   end
 
   def price_range

@@ -24,7 +24,8 @@ class BusinessLandingPagesController < ApplicationController
     business.categories_with_ancestors.map do |cat|
       cat = YelpCategoryPresenter.new(cat)
       text = "#{cat.display_title} in #{business.city}"
-      categories << NavigationElement.new(text, nil)
+      url = "https://www.giftly.com/#{cat.id}-gift-cards/#{business.city.downcase.gsub(/[^a-z0-9]+/, '-')}-#{business.state.downcase}"
+      categories << NavigationElement.new(text, url)
     end
 
     categories

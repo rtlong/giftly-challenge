@@ -1,0 +1,29 @@
+.yelp-ratings-widget {
+  line-height: 2rem;
+  font-size: 0.8rem;
+
+  & .i-stars {
+    margin-right: 0.4rem;
+  }
+
+  & .i-stars, span, img {
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  & .yelp-logo {
+    height: 1.8rem;
+    margin-top: -0.5rem;
+  }
+}
+
+.yelp-price-widget {
+  span {}
+
+  & .green-dollars {
+    color: #52BA7C;
+  }
+  & .grey-dollars {
+    color: #D5D7D5;
+  }
+}
