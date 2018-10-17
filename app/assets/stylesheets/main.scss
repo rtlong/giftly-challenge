@@ -110,6 +110,10 @@ body {
   & img.google-maps {
     max-width: 100%;
   }
+
+  .google-maps-map {
+    height: 15rem;
+  }
 }
 
 .inline {

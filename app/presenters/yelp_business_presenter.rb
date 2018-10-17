@@ -75,7 +75,7 @@ class YelpBusinessPresenter < SimpleDelegator
 
   def categories_with_ancestors
     categories.reduce([]) do |set, c|
-      set.push(c)
+      set.push c
       c.ancestors.each do |ancestor|
         set.push YelpCategoryPresenter.new(ancestor)
       end
