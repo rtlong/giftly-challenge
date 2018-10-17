@@ -26,4 +26,9 @@ class YelpAPI
   def all_categories
     self.class.get("/categories", @options)
   end
+
+  def category(id)
+    safe_id = URI.escape(id)
+    self.class.get("/categories/#{safe_id}", @options)
+  end
 end

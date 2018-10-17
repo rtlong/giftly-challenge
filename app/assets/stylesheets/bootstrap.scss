@@ -1,3 +1,15 @@
 $breadcrumb-divider: quote("›");
 
 @import "bootstrap/scss/bootstrap";
+
+.navbar {
+  padding: 0.5rem 0;
+
+  .col, .col-auto {
+    padding: 0;
+  }
+}
+
+.card-body {
+  padding: 1.25rem 2rem;
+}

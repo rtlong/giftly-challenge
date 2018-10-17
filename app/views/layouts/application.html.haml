@@ -1,0 +1,38 @@
+!!!
+%html{lang: "en"}
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title= page_title
+    = csrf_meta_tags
+    = csp_meta_tag
+    %meta{charset: "utf-8"}/
+    %meta{content: "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}/
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  %body
+    .header
+      .colorBar
+        .container
+          %nav.navbar.navbar-expand-md
+            .col-auto.navbar-brand.logo
+              = image_tag 'giftly-logo-header.png', alt: 'Giftly'
+            .col.navbar-text.pageTitle= page_title
+            %ul.col-auto.navbar-nav.text-right
+              %li.nav-item
+                %a.nav-link{href: "#", role: "button"} Browse
+              %li.nav-item
+                %a.nav-link{href: "#", role: "button"} Corporate Gifts
+
+      - if breadcrumbs.any?
+        %nav.breadcrumbNav
+          .container
+            .row
+              %nav{"aria-label" => "breadcrumb"}
+                %ol.breadcrumb{role: "navigation"}
+                  - breadcrumbs.each do |breadcrumb|
+                    %li.breadcrumb-item
+                      = link_to breadcrumb.text, breadcrumb.target
+
+    .container
+      = yield

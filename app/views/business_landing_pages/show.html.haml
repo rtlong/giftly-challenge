@@ -1,0 +1,156 @@
+.text-center.primary.card
+  .card-body
+    %h1.card-title
+      Buy a Gift Card to #{@business.name}
+    %p
+      Send a personalized cash gift card that is suggested for use at #{@business.name}.
+      Any amount up to $1,000. Deliver by email, mail, or print at home.
+    %p You suggest where to go and what to get— the recipient always get what they want.
+    %p
+      %button.btn.btn-primary{type: "button"} Customize &amp; Buy »
+    %p
+      %button.btn.btn-link{type: "button"}
+        = image_tag "giftly-guarantee.png", alt: 'Guaranteed emblem'
+        100% Satisfaction Guaranteed
+  .card-footer
+    .row
+      .col
+        %button.btn.btn-link{type: "button"} How it works
+      .col
+        %button.btn.btn-link{type: "button"} Sample gift
+      .col
+        %button.btn.btn-link{type: "button"} Why Giftly
+.text-center.card
+  .card-body
+    %h2.card-title Customizable greeting cards for any occasion
+    %p
+      = image_tag "happy-birthday-greeting-card.png", alt: 'Greeting card with the text "Happy Birthday" over a backdrop of baloons in the sky'
+      = image_tag "enjoy-greeting-card.png", alt: 'Greeting card with the text "Enjoy!" over a solid white background'
+      = image_tag "congrats-greeting-card.png", alt: 'Greeting card with a large thumbs-up icon and the text "Congrats!"'
+      = image_tag "photo-greeting-card.png", alt: 'Greeting card with the text "Custom photo card" over a background selfie with several people'
+      = image_tag "love-greeting-card.png", alt: 'Greeting card with the text "Love you" over a solid red background'
+      = image_tag "happy-birthday-candles-greeting-card.png", alt: 'Greeting card with the text "Happy Birthday" and an illustration of 5 candles'
+
+.card.yelp-card
+  .card-body
+    %h2.card-title= "About #{@business.name}"
+
+    .row
+      .col-auto
+        = image_tag @business.image_url, height: '120', class: 'yelp-image'
+      .col
+        .business-name= @business.name
+        = yelp_ratings_widget rating: @business.rating, count: @business.review_count, logo: true
+        .business-address= @business.address
+        .business-phone= @business.phone
+    %dl
+      .row
+        .col.categories
+          %dt Categories
+          - @business.categories.each do |category|
+            %dd
+              %a{href: category.id}>= category.title
+        - if @business.price
+          .col.price-range
+            %dt Price Range
+            %dd= yelp_price_widget @business.price
+            %dd= @business.price_range
+        -# .col.neighborhood
+        -#   %dt Neighborhood
+        -#   %dd= @business.neighborhood
+        - if @business.cross_streets.present?
+          .col.cross-streets
+            %dt Cross Streets
+            %dd= @business.cross_streets
+    .row
+      .col= google_maps_static(*@business.coordinates)
+
+    .row
+      .col
+        = image_tag "yelp-logo.png", alt: 'Yelp', class: 'yelp-logo inline'
+        %span.inline
+          reviews for
+          = @business.name
+
+    - @business.reviews.each do |review|
+      .row
+        .col-auto
+          = yelp_ratings_widget rating: review.fetch('rating')
+        .col
+          = surround '"' do
+            = review.fetch('text')
+          = link_to 'read more', review.fetch('url')
+
+  .card-footer.text-center
+    Is this your business? Take a moment to
+    = link_to 'claim the page', '#'
+    and customize it for free.
+
+.card
+  .card-body
+    %h2.card-title= "If not #{@business.name}, they might also enjoy"
+
+    %p= "Browse places similar to #{@business.name}"
+
+    .row
+      - @similar_categories_nav.each do |cat|
+        .col-6= link_to cat.text, cat.target
+
+    %p Or perhaps,
+
+    .row
+      .col
+        .img= image_tag 'dinner-at-any-restaurant.png'
+        Dinner at Any restaurant
+      .col
+        .img= image_tag 'anything-at-anyplace.png'
+        Anything at Any place
+      .col
+        .img= image_tag 'movies-at-any-theater.png'
+        Movies at Any theater
+
+    %p= link_to 'Browse more gift ideas'
+
+.card
+  .card-body
+    %h2.card-title
+      = "Why buy a gift card using #{image_tag('giftly-small-white.png', alt: 'Giftly')}?".html_safe
+    %p Giftly makes it easy to send a gift card that's personal, but also flexible and convenient. It's the perfect last minute gift for a birthday, graduation, wedding, holiday, and more.
+
+    %p Give any amount up to $1,000 and suggest any business, item, or experience you think the recipient will enjoy. Deliver in a customized greeting card or e-greeting card.
+
+    %p
+      Gifts can be sent electronically by email or text
+      %sup> 1
+      , printed at home, or delivered in the mail.
+
+    %p
+      Your recipient redeems online and chooses how to receive the money. They can spend their funds at
+      = succeed ',' do
+        %span.business-name= @business.name
+      or elsewhere if they prefer. There is no physical gift certificate to carry around or lose.
+
+    %p Gift cards sent through Giftly never expire and there are no fees, so recipients can redeem at any time.
+
+    %p Giftly combines the flexibility and convenience of giving money, but includes a thoughtful suggestion that makes it more personal.
+
+    %p.text-center
+      %button.btn.btn-secondary{type: 'button'} See an example gift &raquo;
+
+.card
+  .card-body
+    %h2.card-title Help
+
+    %p
+      If you have questions, need help, or want to modify, resend, or cancel a gift, please see our #{link_to "Support Center"}, where you can access an array of self-service tools and our FAQ.
+
+    %p
+      = link_to '' do
+        = image_tag "giftly-guarantee.png", alt: 'Guaranteed emblem'
+        100% Satisfaction Guaranteed
+
+.card
+  .card-body
+    %h2.card-title Gift Card Disclosure
+
+    %p The Giftly Gift Card is redeemed for money through the Giftly website. It is not accepted by any third-party merchant and is not covered by the CARD Act. Giftly Gift Cards never expire and there are no inactivity fees.  Please see the Terms and Conditions for the complete terms.

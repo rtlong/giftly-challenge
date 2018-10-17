@@ -1,0 +1,2 @@
+module BusinessLandingPagesHelper
+end

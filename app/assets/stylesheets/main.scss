@@ -1,0 +1,122 @@
+$pageBackgroundColor: #E8EEF1;
+$headerBackgroundColor: #F0EFE8;
+$cardBorderColor: #A4BCC1;
+
+body {
+  background-color: $pageBackgroundColor;
+}
+
+.header > .colorBar {
+  background-color: $headerBackgroundColor;
+  line-height: 3.2rem;
+
+  // & .col .nav-link {
+  //   padding-top: 0;
+  //   padding-bottom: 0;
+  // }
+
+  // .logo, .pageTitle, .nav {
+  //   margin: auto 0;
+  // }
+}
+
+.card {
+  border-color: $cardBorderColor;
+  border-radius: 0;
+  margin-bottom: 1rem;
+}
+
+.card.primary {
+  border-top-width: 0.5rem;
+
+  .card-footer  {
+    .col {
+      border-right: 1px solid $cardBorderColor;
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+
+.yelp-ratings-widget {
+  line-height: 2rem;
+  font-size: 0.8rem;
+
+  & .i-stars {
+    margin-right: 0.4rem;
+  }
+
+  & .i-stars, span, img {
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  & .yelp-logo {
+    height: 1.8rem;
+    margin-top: -0.5rem;
+  }
+}
+
+.yelp-price-widget {
+  span {}
+
+  & .green-dollars {
+    color: #52BA7C;
+  }
+  & .grey-dollars {
+    color: #D5D7D5;
+  }
+}
+
+.yelp-card {
+  .row {
+    margin-top: 2em;
+  }
+
+  img.yelp-image {
+    object-fit: cover;
+    height: 8rem;
+    width: 8rem;
+    border-radius: 0.8rem;
+  }
+
+  .business-name {
+    font-size: 1.5rem;
+  }
+
+  & .categories {
+    & dd {
+      display: inline-block;
+
+      &::after {
+        content: ', ';
+      }
+      &:last-child::after {
+        content: none;
+      }
+    }
+  }
+
+  & .price-range  {
+    & dd {
+      display: inline-block;
+    }
+    .yelp-price-widget {
+      margin-right: 0.8rem;
+    }
+  }
+
+  & img.google-maps {
+    max-width: 100%;
+  }
+}
+
+.inline {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.yelp-logo {
+  height: 2rem;
+}

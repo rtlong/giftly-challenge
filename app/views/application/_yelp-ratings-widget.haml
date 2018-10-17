@@ -1,0 +1,9 @@
+.yelp-ratings-widget
+  .i-stars{ class: stars_class }
+  - if reviews_count
+    %span
+      based on
+      = reviews_count
+      reviews on
+  - if show_logo
+    = image_tag "yelp-logo.png", alt: 'Yelp', class: 'yelp-logo'
